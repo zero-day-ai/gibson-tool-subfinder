@@ -1,0 +1,40 @@
+kind: tool
+name: subfinder
+version: 1.0.0
+description: Subdomain enumeration tool using passive sources for target domain discovery
+author: Gibson Security Team
+license: MIT
+repository: https://github.com/zero-day-ai/gibson-tools-official
+
+build:
+  command: go build -o subfinder-tool ./cmd/worker
+  artifacts:
+    - subfinder-tool
+  workdir: .
+
+runtime:
+  type: go
+  entrypoint: ./subfinder-tool
+  port: 0
+  timeout:
+    default: 5m
+    min: 30s
+    max: 30m
+
+dependencies:
+  gibson: ">=1.0.0"
+  system:
+    - subfinder  # subfinder must be installed (go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest)
+  env: {}
+
+# Worker configuration for queue-based execution
+worker:
+  # Subfinder is I/O-bound (network requests to passive sources).
+  # Moderate concurrency since each scan can make many external requests.
+  concurrency: 4
+
+  # Allow up to 120 seconds for graceful shutdown since enumeration can take time.
+  shutdown_timeout: 120s
+
+  # Heartbeat every 10 seconds to maintain health status
+  heartbeat_interval: 10s

@@ -1,0 +1,29 @@
+syntax = "proto3";
+package gibson.tools.subfinder;
+option go_package = "github.com/zero-day-ai/tools/discovery/subfinder/gen";
+
+import "graphrag.proto";
+
+// SubfinderRequest represents input for the subfinder tool
+message SubfinderRequest {
+    // Domain is the target domain to enumerate subdomains for (required)
+    string domain = 1;
+
+    // Silent suppresses verbose output from subfinder
+    bool silent = 2;
+
+    // TimeoutSeconds is the maximum execution time in seconds
+    int32 timeout_seconds = 3;
+}
+
+// SubfinderResponse represents output from the subfinder tool
+message SubfinderResponse {
+    // Subdomains contains the list of discovered subdomains
+    repeated string subdomains = 1;
+
+    // TotalFound is the total number of subdomains discovered
+    int32 total_found = 2;
+
+    // Discovery result for automatic graph storage
+    gibson.graphrag.DiscoveryResult discovery = 100;
+}
