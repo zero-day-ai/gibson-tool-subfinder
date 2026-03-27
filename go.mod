@@ -1,4 +1,4 @@
-module github.com/zero-day-ai/tools/discovery/subfinder
+module github.com/zero-day-ai/gibson-tool-subfinder
 
 go 1.24.4
 
