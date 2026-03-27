@@ -15,7 +15,7 @@ import (
 	"github.com/zero-day-ai/sdk/tool"
 	"github.com/zero-day-ai/sdk/toolerr"
 	"github.com/zero-day-ai/sdk/types"
-	"github.com/zero-day-ai/tools/discovery/subfinder/gen"
+	"github.com/zero-day-ai/gibson-tool-subfinder/gen"
 	"google.golang.org/protobuf/proto"
 )
 

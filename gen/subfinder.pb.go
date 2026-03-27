@@ -165,7 +165,7 @@ const file_subfinder_proto_rawDesc = "" +
 	"subdomains\x12\x1f\n" +
 	"\vtotal_found\x18\x02 \x01(\x05R\n" +
 	"totalFound\x12>\n" +
-	"\tdiscovery\x18d \x01(\v2 .gibson.graphrag.DiscoveryResultR\tdiscoveryB6Z4github.com/zero-day-ai/tools/discovery/subfinder/genb\x06proto3"
+	"\tdiscovery\x18d \x01(\v2 .gibson.graphrag.DiscoveryResultR\tdiscoveryB6Z4github.com/zero-day-ai/gibson-tool-subfinder/genb\x06proto3"
 
 var (
 	file_subfinder_proto_rawDescOnce sync.Once
