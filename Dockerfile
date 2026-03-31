@@ -33,7 +33,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
     -a -installsuffix cgo \
     -ldflags '-extldflags "-static"' \
-    -o subfinder-tool ./cmd/worker
+    -o subfinder-tool ./cmd
 
 # Stage 3: Runtime image
 FROM alpine:3.21
