@@ -16,7 +16,7 @@ RUN wget -qO /tmp/subfinder.zip \
     rm /tmp/subfinder.zip
 
 # Stage 2: Build the Go wrapper
-FROM golang:1.24.4-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /build
 
