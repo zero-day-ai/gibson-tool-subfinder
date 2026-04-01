@@ -1,8 +1,8 @@
 syntax = "proto3";
-package gibson.tools.subfinder;
+package gibson.tools.subfinder.v1;
 option go_package = "github.com/zero-day-ai/tools/discovery/subfinder/gen";
 
-import "graphrag.proto";
+import "gibson/graphrag/v1/graphrag.proto";
 
 // SubfinderRequest represents input for the subfinder tool
 message SubfinderRequest {
@@ -25,5 +25,5 @@ message SubfinderResponse {
     int32 total_found = 2;
 
     // Discovery result for automatic graph storage
-    gibson.graphrag.DiscoveryResult discovery = 100;
+    gibson.graphrag.v1.DiscoveryResult discovery = 100;
 }
