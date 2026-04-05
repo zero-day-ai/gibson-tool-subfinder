@@ -3,7 +3,7 @@ module github.com/zero-day-ai/gibson-tool-subfinder
 go 1.25.0
 
 require (
-	github.com/zero-day-ai/sdk v0.58.1-0.20260401215420-eec8d9d4b5ef
+	github.com/zero-day-ai/sdk v0.60.1
 	google.golang.org/protobuf v1.36.11
 )
 
