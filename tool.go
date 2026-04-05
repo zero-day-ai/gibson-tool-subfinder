@@ -9,7 +9,6 @@ import (
 	"strings"
 	"time"
 
-	graphragpb "github.com/zero-day-ai/sdk/api/gen/gibson/graphrag/v1"
 	"github.com/zero-day-ai/sdk/exec"
 	"github.com/zero-day-ai/sdk/health"
 	"github.com/zero-day-ai/sdk/tool"
@@ -152,15 +151,11 @@ func (t *ToolImpl) ExecuteProto(ctx context.Context, input proto.Message) (proto
 			WithClass(toolerr.ErrorClassSemantic)
 	}
 
-	// Build DiscoveryResult for graph population
-	discoveryResult := buildDiscoveryResult(req.Domain, subdomains)
-
 	// Build response
 	scanDuration := time.Since(startTime).Seconds()
 	response := &gen.SubfinderResponse{
 		Subdomains: subdomains,
 		TotalFound: int32(len(subdomains)),
-		Discovery:  discoveryResult,
 	}
 
 	// Log completion
@@ -217,30 +212,6 @@ func parseOutput(data []byte) ([]string, error) {
 	}
 
 	return subdomains, nil
-}
-
-// buildDiscoveryResult builds the DiscoveryResult for graph population
-func buildDiscoveryResult(domain string, subdomains []string) *graphragpb.DiscoveryResult {
-	result := &graphragpb.DiscoveryResult{}
-
-	// Create a domain node for the root domain
-	result.Domains = append(result.Domains, &graphragpb.Domain{
-		Name: domain,
-	})
-
-	// Create subdomain nodes
-	for _, subdomain := range subdomains {
-		// Skip if subdomain is the same as the root domain
-		if subdomain == domain {
-			continue
-		}
-
-		result.Domains = append(result.Domains, &graphragpb.Domain{
-			Name: subdomain,
-		})
-	}
-
-	return result
 }
 
 // validateDomain performs basic domain validation
